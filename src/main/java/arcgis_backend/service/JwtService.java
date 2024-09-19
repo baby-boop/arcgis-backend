@@ -2,15 +2,20 @@ package arcgis_backend.service;
 
 import arcgis_backend.model.User;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.JwtBuilder;
+import io.jsonwebtoken.*;
+import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
 import java.util.Date;
+import java.util.Base64;
 
 @Service
 public class JwtService {
 
-    private final String SECRET_KEY = "f77eafe76ecf486feb2c0d48d82cfb75ef7c30aa8dcfe8a897aee33c9c1ce8d1";
+    private final String SECRET_KEY = "";
 
     public String generateToken(User user) {
         String token = Jwts
@@ -25,6 +30,6 @@ public class JwtService {
 
     private SecretKey getSigninKey() {
         byte[] keyBytes = Decoders.BASE64URL.decode(SECRET_KEY);
-        return Keys.hmacShaKeyFor(KeyBytes);
+        return Keys.hmacShaKeyFor(keyBytes);
     }
 }
